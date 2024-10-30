@@ -19,13 +19,13 @@ const Button = (props) => {
 
 const StatisticsLine = (props) => {
   return (
-    <div>
+    <td>
       {!isNaN(props.value) && (
         <>
           {props.text} {props.value} {props.sign}
         </>
       )}
-    </div>
+    </td>
   )
 }
 
@@ -39,14 +39,16 @@ const Statistics = (props) => {
   }
 
   return (
-    <div>
-      <StatisticsLine text="good" value={props.goodValue} />
-      <StatisticsLine text="neutral" value={props.neutralValue} />
-      <StatisticsLine text="bad" value={props.badValue} />
-      <StatisticsLine text="all" value={sumValues} />
-      <StatisticsLine text="average" value={meanValue} />
-      <StatisticsLine text="positive" value={percPositive} sign="%"/>
-    </div>
+    <table>
+      <tbody>
+        <tr><StatisticsLine text="good" value={props.goodValue} /></tr>
+        <tr><StatisticsLine text="neutral" value={props.neutralValue} /></tr>
+        <tr><StatisticsLine text="bad" value={props.badValue} /></tr>
+        <tr><StatisticsLine text="all" value={sumValues} /></tr>
+        <tr><StatisticsLine text="average" value={meanValue} /></tr>
+        <tr><StatisticsLine text="positive" value={percPositive} sign="%"/></tr>
+      </tbody>
+    </table>
   )
 }
 
