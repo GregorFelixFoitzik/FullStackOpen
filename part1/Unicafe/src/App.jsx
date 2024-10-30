@@ -20,7 +20,11 @@ const Button = (props) => {
 const StatisticsLine = (props) => {
   return (
     <div>
-      {props.text} {props.value} {props.sign}
+      {!isNaN(props.value) && (
+        <>
+          {props.text} {props.value} {props.sign}
+        </>
+      )}
     </div>
   )
 }
@@ -30,6 +34,10 @@ const Statistics = (props) => {
   const meanValue = (props.goodValue - props.badValue) / sumValues
   const percPositive = (props.goodValue / sumValues) * 100 
   
+  if (props.goodValue === 0 && props.neutralValue === 0 && props.badValue === 0) {
+    return <div>No feedback given</div>
+  }
+
   return (
     <div>
       <StatisticsLine text="good" value={props.goodValue} />
