@@ -26,11 +26,41 @@ const StatisticsLine = (props) => {
 }
 
 const Statistics = (props) => {
+  const sumValues = props.goodValue + props.neutralValue + props.badValue
+  const meanValue = (props.goodValue - props.badValue) / sumValues
+  const percPositive = (props.goodValue / sumValues) * 100 
+
+  const sumFeedback = () => {
+    return (
+      <div>
+        all {sumValues}
+      </div>
+    )
+  }
+  const averageFeedback = () => {
+    return (
+      <div>
+        average {meanValue}
+      </div>
+    )
+  }
+  const positiveFeedback = () => {
+    return (
+      <div>
+        positive {percPositive}%
+      </div>
+    )
+  }
+
+  
   return (
     <div>
       <StatisticsLine text="good" value={props.goodValue} />
       <StatisticsLine text="neutral" value={props.neutralValue} />
       <StatisticsLine text="bad" value={props.badValue} />
+      {sumFeedback()}
+      {averageFeedback()}
+      {positiveFeedback()}
     </div>
   )
 }
