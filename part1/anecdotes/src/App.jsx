@@ -4,6 +4,16 @@ function randomIndex(max) {
     return Math.floor(Math.random() * max);
 }
 
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.text}</h1>
+    </div>
+  )
+}
+
+
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -17,15 +27,39 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  //  https://stackoverflow.com/a/23326623
+  const [votesAnecdotes, setVotesAnecdotes] = useState(new Array(anecdotes.length).fill(0))
+  // https://stackoverflow.com/a/11301464
+  const idxMax = votesAnecdotes.indexOf(Math.max(...votesAnecdotes))
+
+
   const Generator = () => {
     setSelected(randomIndex(anecdotes.length))
   }
+  const updateVotes = () => {
+    const newVotes = [...votesAnecdotes]
+    newVotes[selected] += 1
+    setVotesAnecdotes(newVotes)
+  }
+  
+  
+
+  
 
   return (
     <div>
+      <Header text="Anecdotes of the day" />
       {anecdotes[selected]}
       <br />
+      has {votesAnecdotes[selected]} votes
+      <br />
+      <button onClick={updateVotes}>vote</button>
       <button onClick={Generator}>next anecdote</button>
+
+      <Header text="Anecdote with most votes" />
+      {anecdotes[idxMax]}
+      <br />
+      has {votesAnecdotes[idxMax]} votes
     </div>
   )
 }
