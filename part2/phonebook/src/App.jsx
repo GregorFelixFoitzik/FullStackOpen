@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { regexFinishNumbers } from './components/regexNumber'
 
 const App = () => {
   const [persons, setPersons] = useState([
