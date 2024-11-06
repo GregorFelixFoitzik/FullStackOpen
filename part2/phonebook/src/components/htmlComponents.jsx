@@ -1,4 +1,5 @@
 import React from 'react'
+import personsService from '../services/persons'
 
 export const Filter = ({value, onChange}) => {
     return (
@@ -21,17 +22,26 @@ export const AddingForm = ({onSubmit, valueName, onChangeName, valueNumber, onCh
             <div>
             <button type="submit">add</button>
             </div>
-      </form>
+        </form>
     )
 }
 
 
 // Displaying Phonebook
-export const DisplayPhonebook = ({persons}) => {
+export const DisplayPhonebook = ({persons, removePerson}) => {
     return (
       <>
-        {persons.map(person => <DisplayPerson key={person.name} person={person} />)}
+        {persons.map(person => 
+        <DisplayPerson 
+          key={person.name} 
+          person={person} 
+          removePerson={removePerson}
+        />)}
       </>
     )
   }
-const DisplayPerson = ({person}) => <div>{person.name} {person.number}</div>
+const DisplayPerson = ({person, removePerson}) => 
+<div>
+  {person.name} {person.number} 
+  <button type="button" onClick={() => removePerson(person.id)}>Delete</button>
+</div>
