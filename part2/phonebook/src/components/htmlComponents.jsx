@@ -41,7 +41,31 @@ export const DisplayPhonebook = ({persons, removePerson}) => {
     )
   }
 const DisplayPerson = ({person, removePerson}) => 
-<div>
-  {person.name} {person.number} 
-  <button type="button" onClick={() => removePerson(person.id)}>Delete</button>
-</div>
+  <div>
+    {person.name} {person.number} 
+    <button type="button" onClick={() => removePerson(person.id)}>Delete</button>
+  </div>
+
+
+
+export const ErrorMessage = ({ message  }) => {
+  if (message === null) {
+    return null
+  }
+  return (
+    <div className='error'>
+      {message}
+    </div>
+  )
+}
+
+export const Notification = ({ message  }) => {
+  if (message === null) {
+    return null
+  }
+  return (
+    <div className='notification'>
+      {message}
+    </div>
+  )
+}
