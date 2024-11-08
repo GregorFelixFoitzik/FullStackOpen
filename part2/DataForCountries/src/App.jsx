@@ -40,7 +40,6 @@ const App = () => {
     <div>
       <html.SearchField value={search} onChange={handleSearchChange}/>
       <html.DisplayCountries fc_obj={filteredCountries} onCountrySelect={handleShowSingle}/>
-      {/* <html.DisplayCapitalWeather data={weatherData}/> */}
     </div>
   )
 }
